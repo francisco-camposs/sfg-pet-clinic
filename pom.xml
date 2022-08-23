@@ -34,9 +34,9 @@
 				<version>2.5.3</version>
 				<configuration>
 					<goals>
-						<goals>install</goals>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
+						install
 					</goals>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
 		</plugins>
