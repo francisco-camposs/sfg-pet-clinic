@@ -1,6 +1,6 @@
 package guru.springframework.sfgpetclinic.model;
 
-public class Person {
+public class Person extends BaseEntity {
 
     protected String firstName;
     protected String lastName;
