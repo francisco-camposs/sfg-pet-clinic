@@ -12,4 +12,10 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping(path = {"/oups", "/oups/"}, method = RequestMethod.GET)
+    public String ooops() {
+        return "notImplemented";
+    }
+
+
 }
