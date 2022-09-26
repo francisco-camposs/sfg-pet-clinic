@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class VetController {
 
-    private final VetService<Vet, Long> vetService;
+    private final VetService vetService;
 
-    public VetController(VetService<Vet, Long> vetService) {
+    public VetController(VetService vetService) {
         this.vetService = vetService;
     }
 

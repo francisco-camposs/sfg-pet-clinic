@@ -11,23 +11,24 @@ import java.time.LocalDate;
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
-    private final VetService<Vet, Long> vetService;
-    private final PetTypeService<PetType, Long> petTypeService;
-    private final SpecialitiesService<Specialty, Long> specialitiesService;
+    private final VetService vetService;
+    private final PetTypeService petTypeService;
+    private final SpecialitiesService specialitiesService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService<Vet, Long> vetService, PetTypeService<PetType, Long> petTypeService, PetService<Pet, Long> petService, SpecialitiesService<Specialty, Long> specialitiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService, SpecialitiesService specialitiesService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialitiesService = specialitiesService;
+        this.visitService = visitService;
     }
 
     @Override
     public void run(String... args) {
 
         int count = petTypeService.findAll().size();
-        if (count == 0)
-            loaddata();
+        if (count == 0) loaddata();
 
     }
 
@@ -40,17 +41,17 @@ public class DataLoader implements CommandLineRunner {
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
 
-        Specialty radiology =  new Specialty();
+        Specialty radiology = new Specialty();
         radiology.setDescription("Radiology");
 
         Specialty savedRadiology = specialitiesService.save(radiology);
 
-        Specialty surgery =  new Specialty();
+        Specialty surgery = new Specialty();
         surgery.setDescription("Surgery");
 
         Specialty savedSurgery = specialitiesService.save(surgery);
 
-        Specialty dentistry =  new Specialty();
+        Specialty dentistry = new Specialty();
         dentistry.setDescription("Dentistry");
 
         Specialty savedDentistry = specialitiesService.save(dentistry);
@@ -86,7 +87,14 @@ public class DataLoader implements CommandLineRunner {
         ivetePet.setPetType(savedCatPetType);
         ivetePet.setBirthDate(LocalDate.parse("2009-01-01"));
         owner2.getPets().add(ivetePet);
-        ownerService.save(owner2);
+        owner2 = ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(ivetePet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+        visitService.save(catVisit);
+
 
         System.out.println("Load Owners...");
 
