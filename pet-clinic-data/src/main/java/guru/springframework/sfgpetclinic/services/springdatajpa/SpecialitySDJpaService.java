@@ -1,6 +1,6 @@
 package guru.springframework.sfgpetclinic.services.springdatajpa;
 
-import guru.springframework.sfgpetclinic.model.Specialty;
+import guru.springframework.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.repositories.SpecialtyRepository;
 import guru.springframework.sfgpetclinic.services.SpecialitiesService;
 import org.springframework.context.annotation.Profile;
@@ -21,25 +21,25 @@ public class SpecialitySDJpaService implements SpecialitiesService {
 
 
     @Override
-    public Set<Specialty> findAll() {
-        Set<Specialty> specialties = new HashSet<>();
+    public Set<Speciality> findAll() {
+        Set<Speciality> specialties = new HashSet<>();
         specialtyRepository.findAll().forEach(specialties::add);
         return specialties;
     }
 
     @Override
-    public Specialty findById(Long id) {
+    public Speciality findById(Long id) {
         return specialtyRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Specialty save(Specialty specialty) {
-        return specialtyRepository.save(specialty);
+    public Speciality save(Speciality speciality) {
+        return specialtyRepository.save(speciality);
     }
 
     @Override
-    public void delete(Specialty specialty) {
-        specialtyRepository.delete(specialty);
+    public void delete(Speciality speciality) {
+        specialtyRepository.delete(speciality);
     }
 
     @Override

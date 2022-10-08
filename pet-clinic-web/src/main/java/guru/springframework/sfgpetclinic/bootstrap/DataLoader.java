@@ -2,11 +2,14 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -27,6 +30,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+        log.debug("Bootstrapping Data");
         int count = petTypeService.findAll().size();
         if (count == 0) loaddata();
 
@@ -41,20 +45,20 @@ public class DataLoader implements CommandLineRunner {
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
 
-        Specialty radiology = new Specialty();
+        Speciality radiology = new Speciality();
         radiology.setDescription("Radiology");
 
-        Specialty savedRadiology = specialitiesService.save(radiology);
+        Speciality savedRadiology = specialitiesService.save(radiology);
 
-        Specialty surgery = new Specialty();
+        Speciality surgery = new Speciality();
         surgery.setDescription("Surgery");
 
-        Specialty savedSurgery = specialitiesService.save(surgery);
+        Speciality savedSurgery = specialitiesService.save(surgery);
 
-        Specialty dentistry = new Specialty();
+        Speciality dentistry = new Speciality();
         dentistry.setDescription("Dentistry");
 
-        Specialty savedDentistry = specialitiesService.save(dentistry);
+        Speciality savedDentistry = specialitiesService.save(dentistry);
 
         System.out.println("Load PetTypes...");
 
